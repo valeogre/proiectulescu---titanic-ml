@@ -67,7 +67,7 @@ y_survival = np.array([percentage_surv, percentage_died])
 
 plt.figure()
 plt.bar(x_survival, y_survival)
-plt.show
+plt.show()
 
 # percents of pessengers in every class
 x_class = np.array(["Class 1", "Class 2", "Class 3"])
@@ -83,4 +83,4 @@ y_sex = np.array([percentage_men, percentage_women])
 
 plt.figure()
 plt.bar(x_sex, y_sex)
-plt.show
+plt.show()
