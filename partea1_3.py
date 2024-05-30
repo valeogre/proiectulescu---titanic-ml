@@ -7,29 +7,18 @@ train_data_in = pd.read_csv('train.csv')
 
 # determine the number of columns of the file
 columns_num = train_data_in.shape[1]
-print(f'Number of columns is: {columns_num}')
 
-# determine the data types of each column
-data_types = []
+# extract in a list the columns which store values that are either int64, or float64
+numerical_columns = []
 for column in train_data_in.columns:
-    data_types.append((column, train_data_in[column].dtype))
-print('\nThe types of data of each column:')
-for column, dtype in data_types:
-    print(f'{column}: {dtype}')
-
-# number of missing values of each column
-missing_val = []
-for col in train_data_in.columns:
-    missing_val.append((col, train_data_in[col].isnull().sum()))
-
-print('\nNumber of missing values for each column:')
-for column, miss in missing_val:
-    print(f'{column}:{miss}')
-
-# number of lines
-rows_num = train_data_in.shape[0]
-print(f'\nNumber of rows is: {rows_num}')
-
-# number of duplicate lines
-duplicated_lines = train_data_in.duplicated().sum()
-print(f'\nNumber of duplicate lines: {duplicated_lines}')
+    if train_data_in[column].dtype == 'int64' or train_data_in[column].dtype == 'float64':
+        numerical_columns.append(column)
+        
+# for every column of this list I make a histogram
+for column in numerical_columns:
+    x = train_data_in[column]
+    plt.figure()
+    plt.title(f'Histogram of {column}')
+    plt.hist(x)
+    plt.ylabel('Frequency')
+    plt.show()
